@@ -1,19 +1,67 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
-        {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
-        {% block stylesheets %}
-            {{ encore_entry_link_tags('app') }}
-        {% endblock %}
 
-        {% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
-        {% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-    </body>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+    {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
+    {% block stylesheets %}
+    {{ encore_entry_link_tags('app') }}
+    {% endblock %}
+
+    {% block javascripts %}
+    {{ encore_entry_script_tags('app') }}
+    {% endblock %}
+</head>
+
+<body>
+    <img id="bottom-right" src="{{ asset('images/bottom-right.png')}}" alt="Logo SnowBoard">
+    <img id="top-right" src="{{ asset('images/top-right.png')}}" alt="Logo SnowBoard">
+    <img id="top-left" src="{{ asset('images/top-left.png')}}" alt="Logo SnowBoard">
+    <img id="bottom-left" src="{{ asset('images/bottom-left.png')}}" alt="Logo SnowBoard">
+
+    <div class="navigation">
+        <img id="logo" src="{{ asset('images/logo.png')}}" alt="Logo de SnowTricks">
+
+        <section id="main_description">
+            <div>
+                 <img id="logo" src="{{ asset('images/illustration.png')}}" alt="Logo de SnowTricks">
+            </div>
+            <div>
+                <h1>Qui sommes nous ?</h1>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores error, delectus impedit maxime necessitatibus tempora id minus esse ullam culpa ducimus, ipsam ab a animi ratione pariatur consequuntur unde perferendis sunt quam fugit laboriosam obcaecati libero! Libero cupiditate itaque saepe nam quae harum quidem natus aliquam, modi sit non blanditiis quibusdam eligendi inventore praesentium, maiores et temporibus. Voluptas placeat doloribus expedita, ratione ipsum error repellendus beatae recusandae, maxime officiis aliquam ullam eos. A, est aliquam! Labore asperiores nihil inventore sunt, id voluptate iste tempora eius, aliquid qui, porro quos possimus placeat! Maiores cupiditate provident possimus, nesciunt dignissimos dolore quasi suscipit ducimus voluptates reprehenderit non recusandae vero fuga sapiente eligendi ipsum laboriosam explicabo rem nulla laudantium mollitia reiciendis saepe quos tenetur! Quis omnis nam blanditiis esse? Aut minima odio quasi, soluta voluptates expedita maiores impedit placeat assumenda asperiores aliquam autem dolores nostrum sint. Dolorem, expedita fugit consequuntur minima quae ratione minus.
+            </div>
+        </section>
+       
+        <input type="checkbox" class="navigation__checkbox" id="navi-toggle">
+
+        <label for="navi-toggle" class="navigation__button">
+            <span class="navigation__icon">&nbsp;</span>
+        </label>
+
+        <div class="navigation__background">&nbsp;</div>
+
+        <nav class="navigation__nav">
+            <ul class="navigation__list">
+                <li class="navigation__item"><a href="#" class="navigation__link"><span><i class="fa-solid fa-house-chimney"></i></span>Accueil</a></li>
+                <li class="navigation__item"><a href="#" class="navigation__link"><span><i class="fa-solid fa-person-snowboarding"></i></span>Les figures</a></li>
+                <li class="navigation__item"><a href="#" class="navigation__link"><span><i class="fa-brands fa-rocketchat"></i></span>Espace discussion</a></li>
+                <li class="navigation__item"><a href="#" class="navigation__link"><span><i class="fa-solid fa-user"></i></span>Mon compte</a></li>
+                
+            </ul>
+        </nav>
+    </div>
+    {% block body %}
+
+    {% endblock %}
+    <footer>
+
+    </footer>
+</body>
+
 </html>
