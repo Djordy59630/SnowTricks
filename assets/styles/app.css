@@ -1,0 +1,78 @@
+
+h1
+{
+    font-family: 'Anton', sans-serif;
+    color: #65abbb;
+}
+#logo
+{
+    display: block;
+    margin: auto;
+    padding-top: 50px;
+}
+
+/********************************************/
+/********** Main Corner Design *************/
+/******************************************/
+#bottom-right
+{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 20%;
+}
+
+#top-right
+{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 15%;
+}
+
+#top-left
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 15%;
+}
+
+#bottom-left
+{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 15%;
+}
+/********************************************/
+/******** Main Home description ************/
+/******************************************/
+
+#main_description
+{
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    width: 60%;
+    align-items: center;
+    flex-wrap: wrap;
+    text-align: justify;
+}
+
+#main_description div
+{
+  width: 50%;
+}
+
+@media screen and (max-width: 1280px)
+{
+    #main_description
+    {
+        width: 90%;
+    }
+    #main_description div
+    {
+      width: 100%;
+    }
+}
