@@ -28,9 +28,14 @@
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item"><a class="nav-link" href="{{path('app_main')}}">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#projects">Tricks</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{{path('app_login')}}">Connection</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{{path('app_register')}}">Inscription</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ path('app_main') }}#projects">Tricks</a></li>
+                        {% if app.user %}
+                            <li class="nav-item"><a class="nav-link" href="{{path('app_logout')}}">Déconnexion</a></li>
+                        {% else %}
+                            <li class="nav-item"><a class="nav-link" href="{{path('app_login')}}">Connection</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{{path('app_register')}}">Inscription</a></li>
+                        {% endif %}                      
+                       
                     </ul>
                 </div>
             </div>
