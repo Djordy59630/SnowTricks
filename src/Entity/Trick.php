@@ -26,7 +26,7 @@ class Trick
     #[ORM\JoinColumn(nullable: false)]
     private ?User $user = null;
 
-    #[ORM\OneToMany(mappedBy: 'trick', targetEntity: Image::class, orphanRemoval: true)]
+    #[ORM\OneToMany(mappedBy: 'trick', targetEntity: Image::class, orphanRemoval: true,  cascade: ['persist'])]
     private Collection $images;
 
     #[ORM\OneToMany(mappedBy: 'trick', targetEntity: Video::class, orphanRemoval: true)]
@@ -34,7 +34,7 @@ class Trick
 
     #[ORM\ManyToOne(inversedBy: 'tricks')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?group $trickGroup = null;
+    private ?Group $trickGroup = null;
 
     #[ORM\OneToMany(mappedBy: 'trick', targetEntity: Comment::class, orphanRemoval: true)]
     private Collection $comments;
@@ -42,7 +42,7 @@ class Trick
     public function __construct()
     {
         $this->images = new ArrayCollection();
-        $this->videos = new ArrayCollection();
+        // $this->videos = new ArrayCollection();
         $this->comments = new ArrayCollection();
     }
 
