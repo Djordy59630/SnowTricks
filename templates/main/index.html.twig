@@ -33,6 +33,8 @@
     </div>
 </section>
 <!-- Projects-->
+
+
 <section class="projects-section bg-light" id="projects">
     <div class="container-fluid">
         <h2 class="text-center mb-4">Liste des tricks</h2>
@@ -40,8 +42,20 @@
         <a class="btn btn-dark mb-5" href="{{ path('app_trick_new')}}"><i class="fa-solid fa-plus"></i> Ajouter une
             figure</a>
         {% endif %}
+       
+
         <div class="row">
-            <div class="col-xl col-sm-11 mb-4 ">
+            {% for trick in tricks %}
+            <div class="col-xl-2 col-sm-11 mb-4 ">
+                <img class="img-fluid" src="{{ asset('../assets/img/' ~ trick.images[0].title ~ '')}}" alt="">
+                <p>{{ trick.name}}
+                    {% if app.user %}
+                    <a class="btn btn-dark p-3 m-2 float-end" href="#"><i class="fa-solid fa-pen-to-square"></i></a>
+                    <a class="btn btn-dark p-3 m-2 float-end" href="#"><i class="fa-solid fa-trash"></i></a></p>
+                {% endif %}
+            </div>
+            {% endfor %}
+            <div class="col-xl-2 col-sm-11 mb-4 ">
                 <img class="img-fluid" src="{{ asset('../assets/img/figure.jpg')}}" alt="">
                 <p>Trick name
                     {% if app.user %}
@@ -49,7 +63,7 @@
                     <a class="btn btn-dark p-3 m-2 float-end" href="#"><i class="fa-solid fa-trash"></i></a></p>
                 {% endif %}
             </div>
-            <div class="col-xl col-sm-11 mb-4 ">
+            <div class="col-xl-2 col-sm-11 mb-4 ">
                 <img class="img-fluid" src="{{ asset('../assets/img/figure.jpg')}}" alt="">
                 <p>Trick name
                     {% if app.user %}
@@ -57,7 +71,7 @@
                     <a class="btn btn-dark p-3 m-2 float-end" href="#"><i class="fa-solid fa-trash"></i></a></p>
                 {% endif %}
             </div>
-            <div class="col-xl col-sm-11 mb-4 ">
+            <div class="col-xl-2 col-sm-11 mb-4 ">
                 <img class="img-fluid" src="{{ asset('../assets/img/figure.jpg')}}" alt="">
                 <p>Trick name
                     {% if app.user %}
@@ -65,7 +79,7 @@
                     <a class="btn btn-dark p-3 m-2 float-end" href="#"><i class="fa-solid fa-trash"></i></a></p>
                 {% endif %}
             </div>
-            <div class="col-xl col-sm-11 mb-4 ">
+            <div class="col-xl-2 col-sm-11 mb-4 ">
                 <img class="img-fluid" src="{{ asset('../assets/img/figure.jpg')}}" alt="">
                 <p>Trick name
                     {% if app.user %}
@@ -73,7 +87,7 @@
                     <a class="btn btn-dark p-3 m-2 float-end" href="#"><i class="fa-solid fa-trash"></i></a></p>
                 {% endif %}
             </div>
-            <div class="col-xl col-sm-11 mb-4 ">
+            <div class="col-xl-2 col-sm-11 mb-4 ">
                 <img class="img-fluid" src="{{ asset('../assets/img/figure.jpg')}}" alt="">
                 <p>Trick name
                     {% if app.user %}
@@ -81,9 +95,7 @@
                     <a class="btn btn-dark p-3 m-2 float-end" href="#"><i class="fa-solid fa-trash"></i></a></p>
                 {% endif %}
             </div>
-        </div>
-        <div class="row">
-            <div class="col-xl col-sm-11 mb-4 ">
+            <div class="col-xl-2 col-sm-11 mb-4 ">
                 <img class="img-fluid" src="{{ asset('../assets/img/figure.jpg')}}" alt="">
                 <p>Trick name
                     {% if app.user %}
@@ -91,7 +103,7 @@
                     <a class="btn btn-dark p-3 m-2 float-end" href="#"><i class="fa-solid fa-trash"></i></a></p>
                 {% endif %}
             </div>
-            <div class="col-xl col-sm-11 mb-4 ">
+            <div class="col-xl-2 col-sm-11 mb-4 ">
                 <img class="img-fluid" src="{{ asset('../assets/img/figure.jpg')}}" alt="">
                 <p>Trick name
                     {% if app.user %}
@@ -99,7 +111,7 @@
                     <a class="btn btn-dark p-3 m-2 float-end" href="#"><i class="fa-solid fa-trash"></i></a></p>
                 {% endif %}
             </div>
-            <div class="col-xl col-sm-11 mb-4 ">
+            <div class="col-xl-2 col-sm-11 mb-4 ">
                 <img class="img-fluid" src="{{ asset('../assets/img/figure.jpg')}}" alt="">
                 <p>Trick name
                     {% if app.user %}
@@ -107,7 +119,7 @@
                     <a class="btn btn-dark p-3 m-2 float-end" href="#"><i class="fa-solid fa-trash"></i></a></p>
                 {% endif %}
             </div>
-            <div class="col-xl col-sm-11 mb-4 ">
+            <div class="col-xl-2 col-sm-11 mb-4 ">
                 <img class="img-fluid" src="{{ asset('../assets/img/figure.jpg')}}" alt="">
                 <p>Trick name
                     {% if app.user %}
@@ -115,7 +127,7 @@
                     <a class="btn btn-dark p-3 m-2 float-end" href="#"><i class="fa-solid fa-trash"></i></a></p>
                 {% endif %}
             </div>
-            <div class="col-xl col-sm-11 mb-4 ">
+            <div class="col-xl-2 col-sm-11 mb-4 ">
                 <img class="img-fluid" src="{{ asset('../assets/img/figure.jpg')}}" alt="">
                 <p>Trick name
                     {% if app.user %}
@@ -123,9 +135,7 @@
                     <a class="btn btn-dark p-3 m-2 float-end" href="#"><i class="fa-solid fa-trash"></i></a></p>
                 {% endif %}
             </div>
-        </div>
-        <div class="row">
-            <div class="col-xl col-sm-11 mb-4 ">
+            <div class="col-xl-2 col-sm-11 mb-4 ">
                 <img class="img-fluid" src="{{ asset('../assets/img/figure.jpg')}}" alt="">
                 <p>Trick name
                     {% if app.user %}
@@ -133,7 +143,7 @@
                     <a class="btn btn-dark p-3 m-2 float-end" href="#"><i class="fa-solid fa-trash"></i></a></p>
                 {% endif %}
             </div>
-            <div class="col-xl col-sm-11 mb-4 ">
+            <div class="col-xl-2 col-sm-11 mb-4 ">
                 <img class="img-fluid" src="{{ asset('../assets/img/figure.jpg')}}" alt="">
                 <p>Trick name
                     {% if app.user %}
@@ -141,7 +151,7 @@
                     <a class="btn btn-dark p-3 m-2 float-end" href="#"><i class="fa-solid fa-trash"></i></a></p>
                 {% endif %}
             </div>
-            <div class="col-xl col-sm-11 mb-4 ">
+            <div class="col-xl-2 col-sm-11 mb-4 ">
                 <img class="img-fluid" src="{{ asset('../assets/img/figure.jpg')}}" alt="">
                 <p>Trick name
                     {% if app.user %}
@@ -149,7 +159,7 @@
                     <a class="btn btn-dark p-3 m-2 float-end" href="#"><i class="fa-solid fa-trash"></i></a></p>
                 {% endif %}
             </div>
-            <div class="col-xl col-sm-11 mb-4 ">
+            <div class="col-xl-2 col-sm-11 mb-4 ">
                 <img class="img-fluid" src="{{ asset('../assets/img/figure.jpg')}}" alt="">
                 <p>Trick name
                     {% if app.user %}
@@ -157,7 +167,7 @@
                     <a class="btn btn-dark p-3 m-2 float-end" href="#"><i class="fa-solid fa-trash"></i></a></p>
                 {% endif %}
             </div>
-            <div class="col-xl col-sm-11 mb-4 ">
+            <div class="col-xl-2 col-sm-11 mb-4 ">
                 <img class="img-fluid" src="{{ asset('../assets/img/figure.jpg')}}" alt="">
                 <p>Trick name
                     {% if app.user %}

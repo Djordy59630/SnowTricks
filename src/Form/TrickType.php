@@ -19,12 +19,12 @@ class TrickType extends AbstractType
                 'mapped' => false,
                 'required' => false
             ])
-            // ->add('videos', FileType::class,[
-            //     'label' => true,
-            //     'multiple' => true,
-            //     'mapped' => false,
-            //     'required' => false
-            // ])
+            ->add('videos', FileType::class,[
+                'label' => true,
+                'multiple' => true,
+                'mapped' => false,
+                'required' => false
+            ])
             ->add('name')
             ->add('content')
             ->add('trickGroup')

@@ -42,7 +42,7 @@ class Trick
     public function __construct()
     {
         $this->images = new ArrayCollection();
-        // $this->videos = new ArrayCollection();
+        $this->videos = new ArrayCollection();
         $this->comments = new ArrayCollection();
     }
 
