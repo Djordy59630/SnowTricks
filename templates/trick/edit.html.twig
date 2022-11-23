@@ -3,11 +3,58 @@
 {% block title %}Edit Trick{% endblock %}
 
 {% block body %}
-    <h1>Edit Trick</h1>
 
-    {{ include('trick/_form.html.twig', {'button_label': 'Update'}) }}
 
-    <a href="{{ path('app_trick_index') }}">back to list</a>
 
-    {{ include('trick/_delete_form.html.twig') }}
+    <!-- About-->
+<section class="about-section text-center main-style" id="about">
+ <h1 class="text-white mb-3">Editer une figure</h1>
+    <div class="container px-4 px-lg-5">
+        {% if trick.images is not empty %}
+            <img src="{{ asset('uploads/' ~ trick.images[0].title ~ '')}}" class="figure-img img-fluid rounded w-100 promote" alt="A generic square placeholder image with rounded corners in a figure.">
+        {% else %}
+            <img src="{{ asset('/images/default.jpg')}}" class="figure-img img-fluid rounded w-100 promote" alt="A generic square placeholder image with rounded corners in a figure.">
+         {% endif %}
+        <div class="row text-white m-3">
+            <h3>Les images</h3>
+            <hr>
+
+             {% for image in trick.images %}
+            <div class="col-3">
+                <img src="{{ asset('uploads/' ~ image.title ~ '')}}" class="figure-img img-fluid rounded w-100 promote" alt="A generic square placeholder image with rounded corners in a figure.">
+                 <div>
+                <form method="post" action="{{ path('app_image_delete', {'id': image.id}) }}" onsubmit="return confirm('Etes vous certain de vouloir supprimer cette image ?');">
+                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ image.id) }}">
+                    <button class="btn btn-danger"><i class="fa-solid fa-trash"></i></button>
+                </form>
+                </div>
+            </div> 
+            {% endfor %}
+        </div>
+       
+       <div class="row text-white m-3">
+            <h3>Les Vidéos</h3>
+            <hr>
+             {% for video in trick.videos %}
+            <div class="col-3 mt-5">
+                <iframe width="100%" height="200px" src="{{ video.link }}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+               <div>
+                <form method="post" action="{{ path('app_video_delete', {'id': video.id}) }}" onsubmit="return confirm('Etes vous certain de vouloir supprimer cette vidéo ?');">
+                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ video.id) }}">
+                    <button class="btn btn-danger"><i class="fa-solid fa-trash"></i></button>
+                </form>
+
+               </div>
+            </div> 
+            {% endfor %}
+        </div>
+
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+           
+                {{ include('trick/_form.html.twig', {'button_label': 'Mettre à jour'}) }}                
+            
+        </div>
+    </div>
+</section>
+  
 {% endblock %}

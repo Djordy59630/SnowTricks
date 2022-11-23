@@ -42,139 +42,38 @@
         <a class="btn btn-dark mb-5" href="{{ path('app_trick_new')}}"><i class="fa-solid fa-plus"></i> Ajouter une
             figure</a>
         {% endif %}
-       
-
         <div class="row">
             {% for trick in tricks %}
             <div class="col-xl-2 col-sm-11 mb-4 ">
-                <img class="img-fluid" src="{{ asset('../assets/img/' ~ trick.images[0].title ~ '')}}" alt="">
-                <p>{{ trick.name}}
+                <p>{{ trick.name}} </p>
+                <a href="{{ path('app_trick_show', {'slug' : trick.slug})}}">
+
+                    {% if trick.images is not empty %}
+                        <img src="{{ asset('uploads/' ~ trick.images[0].title ~ '')}}" class="figure-img img-fluid rounded w-100 promote" alt="A generic square placeholder image with rounded corners in a figure.">
+                    {% else %}
+                        <img src="{{ asset('/images/default.jpg')}}" class="figure-img img-fluid rounded w-100 promote" alt="A generic square placeholder image with rounded corners in a figure.">
+                    {% endif %}
+                   
+                </a>
+               
                     {% if app.user %}
-                    <a class="btn btn-dark p-3 m-2 float-end" href="#"><i class="fa-solid fa-pen-to-square"></i></a>
-                    <a class="btn btn-dark p-3 m-2 float-end" href="#"><i class="fa-solid fa-trash"></i></a></p>
-                {% endif %}
+                    <div class="d-flex justify-content-between mt-2">
+                        <a class="btn btn-dark" href="{{ path('app_trick_edit', {id : trick.id})}}"><i class="fa-solid fa-pen-to-square"></i></a>
+
+                        <form method="post" action="{{ path('app_trick_delete', {'id': trick.id}) }}"
+                            onsubmit="return confirm('Etes vous certain de vouloir supprimer cette figure ?');">
+                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ trick.id) }}">
+                            <button class="btn btn-danger"><i class="fa-solid fa-trash"></i></button>
+                        </form>
+                    </div>
+                    
+                    {% endif %}
+                </p>
+
+                    
             </div>
             {% endfor %}
-            <div class="col-xl-2 col-sm-11 mb-4 ">
-                <img class="img-fluid" src="{{ asset('../assets/img/figure.jpg')}}" alt="">
-                <p>Trick name
-                    {% if app.user %}
-                    <a class="btn btn-dark p-3 m-2 float-end" href="#"><i class="fa-solid fa-pen-to-square"></i></a>
-                    <a class="btn btn-dark p-3 m-2 float-end" href="#"><i class="fa-solid fa-trash"></i></a></p>
-                {% endif %}
-            </div>
-            <div class="col-xl-2 col-sm-11 mb-4 ">
-                <img class="img-fluid" src="{{ asset('../assets/img/figure.jpg')}}" alt="">
-                <p>Trick name
-                    {% if app.user %}
-                    <a class="btn btn-dark p-3 m-2 float-end" href="#"><i class="fa-solid fa-pen-to-square"></i></a>
-                    <a class="btn btn-dark p-3 m-2 float-end" href="#"><i class="fa-solid fa-trash"></i></a></p>
-                {% endif %}
-            </div>
-            <div class="col-xl-2 col-sm-11 mb-4 ">
-                <img class="img-fluid" src="{{ asset('../assets/img/figure.jpg')}}" alt="">
-                <p>Trick name
-                    {% if app.user %}
-                    <a class="btn btn-dark p-3 m-2 float-end" href="#"><i class="fa-solid fa-pen-to-square"></i></a>
-                    <a class="btn btn-dark p-3 m-2 float-end" href="#"><i class="fa-solid fa-trash"></i></a></p>
-                {% endif %}
-            </div>
-            <div class="col-xl-2 col-sm-11 mb-4 ">
-                <img class="img-fluid" src="{{ asset('../assets/img/figure.jpg')}}" alt="">
-                <p>Trick name
-                    {% if app.user %}
-                    <a class="btn btn-dark p-3 m-2 float-end" href="#"><i class="fa-solid fa-pen-to-square"></i></a>
-                    <a class="btn btn-dark p-3 m-2 float-end" href="#"><i class="fa-solid fa-trash"></i></a></p>
-                {% endif %}
-            </div>
-            <div class="col-xl-2 col-sm-11 mb-4 ">
-                <img class="img-fluid" src="{{ asset('../assets/img/figure.jpg')}}" alt="">
-                <p>Trick name
-                    {% if app.user %}
-                    <a class="btn btn-dark p-3 m-2 float-end" href="#"><i class="fa-solid fa-pen-to-square"></i></a>
-                    <a class="btn btn-dark p-3 m-2 float-end" href="#"><i class="fa-solid fa-trash"></i></a></p>
-                {% endif %}
-            </div>
-            <div class="col-xl-2 col-sm-11 mb-4 ">
-                <img class="img-fluid" src="{{ asset('../assets/img/figure.jpg')}}" alt="">
-                <p>Trick name
-                    {% if app.user %}
-                    <a class="btn btn-dark p-3 m-2 float-end" href="#"><i class="fa-solid fa-pen-to-square"></i></a>
-                    <a class="btn btn-dark p-3 m-2 float-end" href="#"><i class="fa-solid fa-trash"></i></a></p>
-                {% endif %}
-            </div>
-            <div class="col-xl-2 col-sm-11 mb-4 ">
-                <img class="img-fluid" src="{{ asset('../assets/img/figure.jpg')}}" alt="">
-                <p>Trick name
-                    {% if app.user %}
-                    <a class="btn btn-dark p-3 m-2 float-end" href="#"><i class="fa-solid fa-pen-to-square"></i></a>
-                    <a class="btn btn-dark p-3 m-2 float-end" href="#"><i class="fa-solid fa-trash"></i></a></p>
-                {% endif %}
-            </div>
-            <div class="col-xl-2 col-sm-11 mb-4 ">
-                <img class="img-fluid" src="{{ asset('../assets/img/figure.jpg')}}" alt="">
-                <p>Trick name
-                    {% if app.user %}
-                    <a class="btn btn-dark p-3 m-2 float-end" href="#"><i class="fa-solid fa-pen-to-square"></i></a>
-                    <a class="btn btn-dark p-3 m-2 float-end" href="#"><i class="fa-solid fa-trash"></i></a></p>
-                {% endif %}
-            </div>
-            <div class="col-xl-2 col-sm-11 mb-4 ">
-                <img class="img-fluid" src="{{ asset('../assets/img/figure.jpg')}}" alt="">
-                <p>Trick name
-                    {% if app.user %}
-                    <a class="btn btn-dark p-3 m-2 float-end" href="#"><i class="fa-solid fa-pen-to-square"></i></a>
-                    <a class="btn btn-dark p-3 m-2 float-end" href="#"><i class="fa-solid fa-trash"></i></a></p>
-                {% endif %}
-            </div>
-            <div class="col-xl-2 col-sm-11 mb-4 ">
-                <img class="img-fluid" src="{{ asset('../assets/img/figure.jpg')}}" alt="">
-                <p>Trick name
-                    {% if app.user %}
-                    <a class="btn btn-dark p-3 m-2 float-end" href="#"><i class="fa-solid fa-pen-to-square"></i></a>
-                    <a class="btn btn-dark p-3 m-2 float-end" href="#"><i class="fa-solid fa-trash"></i></a></p>
-                {% endif %}
-            </div>
-            <div class="col-xl-2 col-sm-11 mb-4 ">
-                <img class="img-fluid" src="{{ asset('../assets/img/figure.jpg')}}" alt="">
-                <p>Trick name
-                    {% if app.user %}
-                    <a class="btn btn-dark p-3 m-2 float-end" href="#"><i class="fa-solid fa-pen-to-square"></i></a>
-                    <a class="btn btn-dark p-3 m-2 float-end" href="#"><i class="fa-solid fa-trash"></i></a></p>
-                {% endif %}
-            </div>
-            <div class="col-xl-2 col-sm-11 mb-4 ">
-                <img class="img-fluid" src="{{ asset('../assets/img/figure.jpg')}}" alt="">
-                <p>Trick name
-                    {% if app.user %}
-                    <a class="btn btn-dark p-3 m-2 float-end" href="#"><i class="fa-solid fa-pen-to-square"></i></a>
-                    <a class="btn btn-dark p-3 m-2 float-end" href="#"><i class="fa-solid fa-trash"></i></a></p>
-                {% endif %}
-            </div>
-            <div class="col-xl-2 col-sm-11 mb-4 ">
-                <img class="img-fluid" src="{{ asset('../assets/img/figure.jpg')}}" alt="">
-                <p>Trick name
-                    {% if app.user %}
-                    <a class="btn btn-dark p-3 m-2 float-end" href="#"><i class="fa-solid fa-pen-to-square"></i></a>
-                    <a class="btn btn-dark p-3 m-2 float-end" href="#"><i class="fa-solid fa-trash"></i></a></p>
-                {% endif %}
-            </div>
-            <div class="col-xl-2 col-sm-11 mb-4 ">
-                <img class="img-fluid" src="{{ asset('../assets/img/figure.jpg')}}" alt="">
-                <p>Trick name
-                    {% if app.user %}
-                    <a class="btn btn-dark p-3 m-2 float-end" href="#"><i class="fa-solid fa-pen-to-square"></i></a>
-                    <a class="btn btn-dark p-3 m-2 float-end" href="#"><i class="fa-solid fa-trash"></i></a></p>
-                {% endif %}
-            </div>
-            <div class="col-xl-2 col-sm-11 mb-4 ">
-                <img class="img-fluid" src="{{ asset('../assets/img/figure.jpg')}}" alt="">
-                <p>Trick name
-                    {% if app.user %}
-                    <a class="btn btn-dark p-3 m-2 float-end" href="#"><i class="fa-solid fa-pen-to-square"></i></a>
-                    <a class="btn btn-dark p-3 m-2 float-end" href="#"><i class="fa-solid fa-trash"></i></a></p>
-                {% endif %}
-            </div>
+
         </div>
     </div>
     <a class="btn btn-primary arrow-bottom" href="#projects"><i class="fa-solid fa-arrow-up"></i></a>

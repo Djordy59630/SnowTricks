@@ -3,28 +3,80 @@
 {% block title %}Trick{% endblock %}
 
 {% block body %}
-    <h1>Trick</h1>
+    
+    <!-- About-->
+<section class="about-section text-center main-style" id="about">
+ <h1 class="text-white mb-3">{{ trick.name}}</h1>
+    <div class="container px-4 px-lg-5">
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ trick.id }}</td>
-            </tr>
-            <tr>
-                <th>Name</th>
-                <td>{{ trick.name }}</td>
-            </tr>
-            <tr>
-                <th>Content</th>
-                <td>{{ trick.content }}</td>
-            </tr>
-        </tbody>
-    </table>
+         {% if trick.images is not empty %}
+            <img src="{{ asset('uploads/' ~ trick.images[0].title ~ '')}}" class="figure-img img-fluid rounded w-100 promote" alt="A generic square placeholder image with rounded corners in a figure.">
+        {% else %}
+            <img src="{{ asset('/images/default.jpg')}}" class="figure-img img-fluid rounded w-100 promote" alt="A generic square placeholder image with rounded corners in a figure.">
+         {% endif %}
 
-    <a href="{{ path('app_trick_index') }}">back to list</a>
+        <div class="row text-white">
+            <h3>Les images</h3>
+            <hr>
+             {% for image in trick.images %}
+            <div class="col-3">
+                <img src="{{ asset('uploads/' ~ image.title ~ '')}}" class="figure-img img-fluid rounded w-100 promote" alt="A generic square placeholder image with rounded corners in a figure.">
+            </div> 
+            {% endfor %}
+        </div>
+       
+       <div class="row text-white">
+            <h3>Les Vidéos</h3>
+            <hr>
+             {% for video in trick.videos %}
+            <div class="col-3">
+               {{ video.link|raw }}
+            </div> 
+            {% endfor %}
+        </div>
 
-    <a href="{{ path('app_trick_edit', {'id': trick.id}) }}">edit</a>
+        <div class="row text-white my-5">
+            <h3>Ecrire un Commentaires :</h3>
+            <hr>
+        </div>
 
-    {{ include('trick/_delete_form.html.twig') }}
+
+        {{ form_start(form) }}
+            <div class="my-2">
+            {{ form_label(form.title, 'Titre') }}
+            {{ form_widget(form.title) }}
+            {{ form_errors(form.title) }}
+            </div>
+
+             <div class="my-2">
+            {{ form_label(form.content, 'Message') }}
+            {{ form_widget(form.content) }}
+            {{ form_errors(form.content) }}
+             </div>
+
+            <button class="btn btn-success">{{ button_label|default('Envoyer') }}</button>
+        {{ form_end(form) }}
+
+
+        <div class="row text-white my-5">
+            <h3>Espace Commentaires :</h3>
+            <hr>
+        </div>
+
+        <div class="text-white my-4 row" id="comment" >
+
+
+            {% for comment in comments %}
+                <div class="col-3">
+                    <img src="{{ asset('/images/profil.jpg')}}" alt="" class="w-75">
+                    <h3>{{ comment.title }}</h3>
+                    <p> {{ comment.content }}</p>
+                </div>
+               
+            {% endfor %}
+        </div>
+       
+
+    </div>
+</section>
 {% endblock %}

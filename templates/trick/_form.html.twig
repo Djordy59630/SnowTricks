@@ -16,13 +16,76 @@
     {{ form_widget(form.images) }}
     {{ form_errors(form.images) }}
 
-    {# {{ form_label(form.videos, 'Ajouter des vidéos') }}
-    {{ form_widget(form.videos) }}
-    {{ form_errors(form.videos) }} #}
 
+    {% for video in form.videos %}
+    <li class="d-none">
+        {{ form_row(video) }}
+       
+    </li>
+  {% endfor %}
 
-    <button class="btn btn-light mt-4">{{ button_label|default('Valider') }}</button>
+    <div class="ticket" data-index="{{ form.videos|length > 0 ? form.videos|last.vars.name + 1 : 0 }}"
+    data-prototype="{{ form_widget(form.videos.vars.prototype)|e('html_attr') }}">
+    </div>
 
+    <button type="button" class="add_item_link btn btn-warning mt-3" data-collection-holder-class="ticket">
+    <span class="btn-label"><i class="fa-solid fa-plus"></i>
+    </span>Ajouter uune vidéo</button>
+    </br>
 
+    <button class="btn btn-light mt-3">{{ button_label|default('Valider') }}</button>
 
 {{ form_end(form) }}
+
+
+
+<script>
+  const addFormToCollection = (e) => {
+    const collectionHolder = document.querySelector('.' + e.currentTarget.dataset.collectionHolderClass);
+
+    const item = document.createElement('div');
+    item.className = 'ticketCard'
+
+    item.innerHTML = collectionHolder
+      .dataset
+      .prototype
+      .replace(
+        /__name__/g,
+        collectionHolder.dataset.index
+      );
+
+    collectionHolder.appendChild(item);
+
+    collectionHolder.dataset.index++;
+
+    // add a delete link to the new form
+    addTagFormDeleteLink(item);
+  };
+
+  const addTagFormDeleteLink = (item) => {
+    const removeFormButton = document.createElement('button');
+    removeFormButton.innerText = 'Supprimer ce lien';
+    removeFormButton.className = "btn btn-danger mt-3";
+
+    item.append(removeFormButton);
+
+    removeFormButton.addEventListener('click', (e) => {
+        e.preventDefault();
+        // remove the li for the tag form
+        item.remove();
+    });
+}
+
+  document
+    .querySelectorAll('.add_item_link')
+    .forEach(btn => {
+      btn.addEventListener("click", addFormToCollection)
+    });
+
+
+    document
+    .querySelectorAll('ul.ticket li')
+    .forEach((tag) => {
+        addTagFormDeleteLink(tag)
+    })
+</script>
