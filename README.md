@@ -1,0 +1,2 @@
+# SnowTricks
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/40fef519dcce428d9b83ca8da8d238e4)](https://app.codacy.com/gh/Djordy59630/SnowTricks?utm_source=github.com&utm_medium=referral&utm_content=Djordy59630/SnowTricks&utm_campaign=Badge_Grade_Settings)
