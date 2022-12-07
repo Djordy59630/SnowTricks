@@ -1,31 +1,31 @@
-Dernière analyse Codacy
------------------------
+Dernière analyse Codacy <br/>
+----------------------- <br/>
 
-[![Codacy Badge](https://app.codacy.com/project/badge/Grade/e18811bd7b1542f581f0853c726d1e53)](https://www.codacy.com/gh/Djordy59630/SnowTricks/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Djordy59630/SnowTricks&amp;utm_campaign=Badge_Grade)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/e18811bd7b1542f581f0853c726d1e53)](https://www.codacy.com/gh/Djordy59630/SnowTricks/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Djordy59630/SnowTricks&amp;utm_campaign=Badge_Grade) <br/>
 
----------------------
-Instruction
----------------------
+--------------------- <br/>
+Instruction <br/>
+--------------------- <br/>
 
-I For init project : 
-  -------------------------
-  1 - Clone this repository
-  2 - composer install
-  3 - yarn install
-  4 - yarn build
+I For init project : <br/>
+  ------------------------- <br/>
+  1 - Clone this repository <br/>
+  2 - composer install  <br/>
+  3 - yarn install  <br/>
+  4 - yarn build  <br/><br/>
 
 
-II For Databse
-  ------------------------
-   1 - Create .env.local with database informations
-   2 - php bin/console d:m:m
+II For Databse <br/>
+  ------------------------ <br/>
+   1 - Create .env.local with database informations <br/>
+   2 - php bin/console d:m:m <br/>
    
    
-III For Fixtures
-  -----------------------
-  1 - php bin/console doctrine:fixtures:load
+III For Fixtures <br/>
+  ----------------------- <br/>
+  1 - php bin/console doctrine:fixtures:load <br/><br/>
   
-  Account : Michel 
-  Password : MonSuperMotDePasse.
+  Account : Michel <br/> 
+  Password : MonSuperMotDePasse. <br/><br/>
   
   Enjoy :D
