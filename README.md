@@ -18,7 +18,8 @@ I For init project : <br/>
 II For Database <br/>
   ------------------------ <br/>
    1 - modify .env with database informations <br/>
-   2 - php bin/console doctrine:migrations:migrate <br/>
+   2 - php bin/console doctrine:create:database <br/>
+   3 - php bin/console doctrine:migrations:migrate <br/>
    
    
 III For Fixtures <br/>
