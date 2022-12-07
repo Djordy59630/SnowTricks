@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Trick{% endblock %}
+{% block title %}SnowTrick - Edition d'une {% endblock %}
 
 {% block body %}
 
@@ -36,8 +36,8 @@
             <h3>Les Vidéos</h3>
             <hr>
              {% for video in trick.videos %}
-            <div class="col-3 mt-5">
-                <iframe width="100%" height="200px" src="{{ video.link }}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <div class="col-3 md-5 ">
+               {{ video.link|raw }}
                <div>
                 <form method="post" action="{{ path('app_video_delete', {'id': video.id}) }}" onsubmit="return confirm('Etes vous certain de vouloir supprimer cette vidéo ?');">
                     <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ video.id) }}">
