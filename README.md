@@ -7,6 +7,10 @@ Dernière analyse Codacy <br/>
 Instruction <br/>
 --------------------- <br/>
 
+
+Php version : 8.01
+MariaDb : 10.6.5-MariaDB
+
 I For init project : <br/>
   ------------------------- <br/>
   1 - Clone this repository <br/>
