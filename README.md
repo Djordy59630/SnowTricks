@@ -7,6 +7,10 @@ Dernière analyse Codacy <br/>
 Instruction <br/>
 --------------------- <br/>
 
+
+Php version : 8.01 <br/>
+MariaDb : 10.6.5-MariaDB
+
 I For init project : <br/>
   ------------------------- <br/>
   1 - Clone this repository <br/>
@@ -18,7 +22,7 @@ I For init project : <br/>
 II For Database <br/>
   ------------------------ <br/>
    1 - modify .env with database informations <br/>
-   2 - php bin/console doctrine:create:database <br/>
+   2 - php bin/console doctrine:database:create <br/>
    3 - php bin/console doctrine:migrations:migrate <br/>
    
    
