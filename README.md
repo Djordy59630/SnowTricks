@@ -15,7 +15,7 @@ I For init project : <br/>
   4 - yarn build  <br/><br/>
 
 
-II For Databse <br/>
+II For Database <br/>
   ------------------------ <br/>
    1 - Create .env.local with database informations <br/>
    2 - php bin/console d:m:m <br/>
