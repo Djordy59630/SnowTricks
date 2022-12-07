@@ -17,8 +17,8 @@ I For init project : <br/>
 
 II For Database <br/>
   ------------------------ <br/>
-   1 - Create .env.local with database informations <br/>
-   2 - php bin/console d:m:m <br/>
+   1 - modify .env with database informations <br/>
+   2 - php bin/console doctrine:migrations:migrate <br/>
    
    
 III For Fixtures <br/>
