@@ -8,7 +8,7 @@ Instruction <br/>
 --------------------- <br/>
 
 
-Php version : 8.01
+Php version : 8.01 <br/>
 MariaDb : 10.6.5-MariaDB
 
 I For init project : <br/>
