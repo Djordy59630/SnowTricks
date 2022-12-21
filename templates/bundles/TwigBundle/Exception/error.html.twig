@@ -1,0 +1,14 @@
+{# templates/bundles/TwigBundle/Exception/error.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div id="page" class="d-flex justify-content-center align-items-center" >
+    <div id="middle-box">
+
+    <h1 class="text-center">Erreur Cette page n'existe pas</h1>
+    <p>
+       <a class="btn btn-black my-3 mx-auto d-block" href="{{ path('app_main') }}">Retour à la page d'accueil</a>.
+    </p>
+    </div>
+</div>
+{% endblock %}

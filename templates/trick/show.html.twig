@@ -35,28 +35,30 @@
             {% endfor %}
         </div>
 
+
+         {% if app.user %}
         <div class="row text-white my-5">
             <h3>Ecrire un Commentaires :</h3>
             <hr>
         </div>
 
+        
+            {{ form_start(form) }}
+                <div class="my-2">
+                {{ form_label(form.title, 'Titre') }}
+                {{ form_widget(form.title) }}
+                {{ form_errors(form.title) }}
+                </div>
 
-        {{ form_start(form) }}
-            <div class="my-2">
-            {{ form_label(form.title, 'Titre') }}
-            {{ form_widget(form.title) }}
-            {{ form_errors(form.title) }}
-            </div>
+                <div class="my-2">
+                {{ form_label(form.content, 'Message') }}
+                {{ form_widget(form.content) }}
+                {{ form_errors(form.content) }}
+                </div>
 
-             <div class="my-2">
-            {{ form_label(form.content, 'Message') }}
-            {{ form_widget(form.content) }}
-            {{ form_errors(form.content) }}
-             </div>
-
-            <button class="btn btn-success">{{ button_label|default('Envoyer') }}</button>
-        {{ form_end(form) }}
-
+                <button class="btn btn-success">{{ button_label|default('Envoyer') }}</button>
+            {{ form_end(form) }}
+        {% endif %}
 
         <div class="row text-white my-5">
             <h3>Espace Commentaires :</h3>
@@ -70,10 +72,15 @@
                 <div class="col-3">
                     <img src="{{ asset('/images/profil.jpg')}}" alt="" class="w-75">
                     <h3>{{ comment.title }}</h3>
-                    <p> {{ comment.content }}</p>
+                    <p class="my-3"> {{ comment.content }}</p>
+                    <p class="m-0">Ecrit par : {{ comment.user.username }}</p>
+                    <p class="m-0">le {{ comment.createdAt|date('d-m-Y H:i')}}</p>
                 </div>
-               
             {% endfor %}
+            <div class="text-center">
+                 {{ knp_pagination_render(comments) }}
+            </div>
+             
         </div>
        
 

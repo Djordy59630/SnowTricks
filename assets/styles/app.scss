@@ -50,3 +50,31 @@ iframe
     width: 90% !important;
     height: auto !important;
 }
+
+.alert
+{
+    position: absolute !important;
+    bottom: 0;
+    z-index: 999;
+}
+
+.pagination
+{
+    justify-content: center;
+    margin-top: 20px;
+}
+.pagination a
+{
+    color: inherit;
+}
+.current{
+    background-color: green;
+    padding: 10px;
+    border-radius: 5px;
+}
+.page, .next, .last, .previous, .first{
+    background-color: rgb(189, 189, 189);
+    padding: 10px;
+    border-radius: 5px;
+    color: black;
+}

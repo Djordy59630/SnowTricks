@@ -5,11 +5,14 @@ namespace App\Controller;
 use App\Entity\Image;
 use App\Entity\Trick;
 use App\Entity\Video;
+use DateTimeImmutable;
 use App\Entity\Comment;
 use App\Form\TrickType;
 use App\Form\CommentType;
+use App\Service\ImageService;
 use App\Repository\TrickRepository;
 use App\Repository\CommentRepository;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -28,44 +31,19 @@ class TrickController extends AbstractController
     }
 
     #[Route('/new', name: 'app_trick_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, TrickRepository $trickRepository): Response
+    public function new(Request $request, TrickRepository $trickRepository, ImageService $imageService): Response
     {
         $trick = new Trick();
         $form = $this->createForm(TrickType::class, $trick);
         $form->handleRequest($request);
         $user = $this->getUser();
 
-        
         if ($form->isSubmitted() && $form->isValid()) {
 
             // On récupère les images transmises
             $images = $form->get('images')->getData();
-            $links = $form->get('videos')->getData();
             $name = $form->get('name')->getData();
-
-            // On boucle sur les images
-            foreach($images as $image){
-                // On génère un nouveau nom de fichier
-                $fichier = md5(uniqid()).'.'.$image->guessExtension();
-                
-                // On copie le fichier dans le dossier uploads
-                $image->move(
-                    $this->getParameter('images_directory'),
-                    $fichier
-                );
-                
-                // On crée l'image dans la base de données
-                $img = new Image();
-                $img->setTitle($fichier);
-                $trick->addImage($img);
-            }
-
-            foreach($links as $link){
-                $video = new Video();
-                $video->setLink($link->getLink());
-                $trick->addVideo($video);
-            }
-
+            $imageService->add($images, $trick, $this->getParameter('images_directory'));
 
             $slugger = new AsciiSlugger();
             $slug = $slugger->slug($name);
@@ -74,6 +52,7 @@ class TrickController extends AbstractController
             $trick->setUser($user);
             $trickRepository->save($trick, true);
 
+            $this->addFlash('success', 'La figure a été créée avec succès!');
             return $this->redirectToRoute('app_main', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -84,7 +63,7 @@ class TrickController extends AbstractController
     }
 
     #[Route('/{slug}', name: 'app_trick_show', methods: ['GET', 'POST'])]
-    public function show(Request $request, Trick $trick, CommentRepository $commentRepository): Response
+    public function show(Request $request, Trick $trick, CommentRepository $commentRepository, PaginatorInterface $paginator): Response
     {
 
         $comment = new Comment();
@@ -93,19 +72,20 @@ class TrickController extends AbstractController
         $user = $this->getuser();
 
         if ($form->isSubmitted() && $form->isValid()) {
-         
 
             $comment->setTrick($trick);
             $comment->setUser($user);
-
+            $date = new DateTimeImmutable();
+            $comment->setCreatedAt($date);
             $commentRepository->save($comment, true);
-
-
             return $this->redirectToRoute('app_trick_show', ['slug' => $trick->getSlug() ], Response::HTTP_SEE_OTHER);
         }
-
-        $comments = $commentRepository->findBy(array('trick' => $trick),array());
-
+        $donnees = $commentRepository->findBy(array('trick' => $trick),array('createdAt' => 'DESC'));
+        $comments = $paginator->paginate(
+            $donnees, // Requête contenant les données à paginer (ici nos articles)
+            $request->query->getInt('page', 1), // Numéro de la page en cours, passé dans l'URL, 1 si aucune page
+            10 // Nombre de résultats par page
+        );
         return $this->renderForm('trick/show.html.twig', [
             'trick' => $trick,
             'comments' =>  $comments,
@@ -114,34 +94,14 @@ class TrickController extends AbstractController
     }
 
     #[Route('/{id}/edit', name: 'app_trick_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Trick $trick, TrickRepository $trickRepository): Response
+    public function edit(Request $request, Trick $trick, TrickRepository $trickRepository, ImageService $imageService): Response
     {
         $form = $this->createForm(TrickType::class, $trick);
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
-
-
             // On récupère les images transmises
             $images = $form->get('images')->getData();
-
-            // On boucle sur les images
-            foreach($images as $image){
-                // On génère un nouveau nom de fichier
-                $fichier = md5(uniqid()).'.'.$image->guessExtension();
-                
-                // On copie le fichier dans le dossier uploads
-                $image->move(
-                    $this->getParameter('images_directory'),
-                    $fichier
-                );
-                
-                // On crée l'image dans la base de données
-                $img = new Image();
-                $img->setTitle($fichier);
-                $trick->addImage($img);
-            }
-
+            $imageService->add($images, $trick, $this->getParameter('images_directory'));
             $trickRepository->save($trick, true);
 
             return $this->redirectToRoute('app_trick_edit', ['id' => $trick->getId()], Response::HTTP_SEE_OTHER);
@@ -159,7 +119,6 @@ class TrickController extends AbstractController
         if ($this->isCsrfTokenValid('delete'.$trick->getId(), $request->request->get('_token'))) {
             $trickRepository->remove($trick, true);
         }
-
         return $this->redirectToRoute('app_main', [], Response::HTTP_SEE_OTHER);
     }
 }
