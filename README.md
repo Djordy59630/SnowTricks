@@ -30,6 +30,10 @@ III For Fixtures <br/>
   ----------------------- <br/>
   1 - php bin/console doctrine:fixtures:load <br/><br/>
   
+IV For local environement <br/>
+  ----------------------- <br/>
+  1 - Configurer le mailer dns en fonction de votre environement local
+  
   Account : Michel <br/> 
   Password : MonSuperMotDePasse. <br/><br/>
   
